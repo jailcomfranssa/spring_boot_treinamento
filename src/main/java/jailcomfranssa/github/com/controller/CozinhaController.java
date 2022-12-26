@@ -1,21 +1,23 @@
 package jailcomfranssa.github.com.controller;
 
 import jailcomfranssa.github.com.model.entity.Cozinha;
+import jailcomfranssa.github.com.model.wrapper.CozinhasWrapper;
 import jailcomfranssa.github.com.service.CozinhaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/api/cozinhas",
         produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 public class CozinhaController {
 
-    private CozinhaService cozinhaService;
+    private final CozinhaService cozinhaService;
 
     @Autowired
     public CozinhaController(CozinhaService cozinhaService) {
@@ -23,8 +25,32 @@ public class CozinhaController {
     }
 
     @GetMapping()
-    public List<Cozinha> listar(){
-        return cozinhaService.listar();
+    public ResponseEntity<List<Cozinha>> listar(){
+        return new ResponseEntity<>(cozinhaService.listar(),HttpStatus.OK);
+    }
+//    @GetMapping()
+//    public CozinhasWrapper listarXml(){
+//        return new CozinhasWrapper(cozinhaService.listar());
+//    }
+    @PostMapping()
+    public ResponseEntity<Cozinha> save(@RequestBody Cozinha cozinha){
+        Cozinha cozinhaSave = cozinhaService.save(cozinha);
+        return new ResponseEntity<>(cozinhaSave, HttpStatus.CREATED);
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<Cozinha>> listById(@PathVariable Long id){
+        return new ResponseEntity<>(cozinhaService.listarPorId(id),HttpStatus.OK);
+
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<Cozinha> update(@PathVariable Long id, @RequestBody Cozinha cozinha){
+        return new ResponseEntity<>(cozinhaService.atualizar(cozinha,id),HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete(@PathVariable Long id){
+        return new ResponseEntity<>(cozinhaService.deletar(id),HttpStatus.NO_CONTENT);
+
     }
 }
 

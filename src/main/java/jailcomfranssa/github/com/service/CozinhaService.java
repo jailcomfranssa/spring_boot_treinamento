@@ -4,6 +4,7 @@ import jailcomfranssa.github.com.model.entity.Cozinha;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -13,5 +14,6 @@ public interface CozinhaService {
     public List<Cozinha> listar();
     public Optional<Cozinha> listarPorId(Long id);
     public Cozinha atualizar(Cozinha cozinha, Long id);
-    public Cozinha deletar(Long id);
+    public String deletar(Long id);
+    public Cozinha atualizarParcial(Map<String, Object> campos, Long id);
 }

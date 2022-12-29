@@ -94,4 +94,9 @@ public class RestauranteServiceImpl implements RestauranteService {
     public List<Restaurante> consultaNome(String nome, Long id) {
         return repository.consultarNome(nome,id);
     }
+
+    @Override
+    public List<Restaurante> consultaPorNome(String nome, Long id) {
+        return repository.consultarPorNome(nome,id);
+    }
 }

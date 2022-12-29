@@ -61,6 +61,12 @@ public class RestauranteController {
     public ResponseEntity<Integer> conteCozinha(Long id){
         return new ResponseEntity<>(restauranteService.contCozinha(id),HttpStatus.OK);
     }
+
+    @GetMapping("/consulta-nome")
+    public ResponseEntity<List<Restaurante>> consultaPorNome(String nome, Long id){
+        return new ResponseEntity<>(restauranteService.consultaNome(nome, id),HttpStatus.OK);
+
+    }
 }
 
 

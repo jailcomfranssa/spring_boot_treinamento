@@ -21,4 +21,5 @@ public interface RestauranteService {
     List<Restaurante> top2PorNome(String nome);
     Boolean existe(String nome);
     Integer contCozinha(Long id);
+    List<Restaurante> consultaNome(String nome, Long id);
 }

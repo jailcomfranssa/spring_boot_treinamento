@@ -8,6 +8,7 @@ import jailcomfranssa.github.com.service.RestauranteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,5 +54,39 @@ public class RestauranteServiceImpl implements RestauranteService {
     @Override
     public String deletar(Long id) {
         return null;
+    }
+
+    @Override
+    public List<Restaurante> findByTaxaFreteBetween(BigDecimal taxaInicial, BigDecimal taxaFinal) {
+        return repository.findByTaxaFreteBetween(taxaInicial,taxaFinal);
+    }
+
+    @Override
+    public List<Restaurante> findByNomeCozinha(String nome, Long cozinhaId) {
+        return repository.findByNomeContainsAndCozinhaId(nome,cozinhaId);
+    }
+
+    @Override
+    public Optional<Restaurante> primeiroNome(String nome) {
+        Optional<Restaurante> restaurante = repository.findFirstByNome(nome);
+        if(restaurante.isEmpty()){
+            throw new RuntimeException("Não encontrado Restaurante com nome: " + nome);
+        }
+        return restaurante;
+    }
+
+    @Override
+    public List<Restaurante> top2PorNome(String nome) {
+        return repository.findTop2ByNomeContaining(nome);
+    }
+
+    @Override
+    public Boolean existe(String nome) {
+        return repository.existsByNome(nome);
+    }
+
+    @Override
+    public Integer contCozinha(Long id) {
+        return repository.countByCozinhaId(id);
     }
 }

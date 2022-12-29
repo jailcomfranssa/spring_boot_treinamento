@@ -29,8 +29,18 @@ public class CozinhaServiceImpl implements CozinhaService {
     }
 
     @Override
-    public List<Cozinha> listar() {
-        return repository.findAll();
+    public List<Cozinha> listar(String nome) {
+        if(nome == null){
+            return repository.findAll();
+        }
+        else {
+            return repository.findByNome(nome);
+        }
+    }
+
+    @Override
+    public List<Cozinha> listarPorNome(String nome) {
+        return repository.findByNome(nome);
     }
 
     @Override
@@ -91,7 +101,6 @@ public class CozinhaServiceImpl implements CozinhaService {
             ReflectionUtils.setField(field, cozinha, novoValor);
 
         });
-
     }
 }
 

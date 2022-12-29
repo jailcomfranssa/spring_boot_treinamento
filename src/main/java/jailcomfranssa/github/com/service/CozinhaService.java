@@ -11,7 +11,8 @@ import java.util.Optional;
 public interface CozinhaService {
 
     public Cozinha save(Cozinha cozinha);
-    public List<Cozinha> listar();
+    public List<Cozinha> listar(String nome);
+    public List<Cozinha> listarPorNome(String nome);
     public Optional<Cozinha> listarPorId(Long id);
     public Cozinha atualizar(Cozinha cozinha, Long id);
     public String deletar(Long id);

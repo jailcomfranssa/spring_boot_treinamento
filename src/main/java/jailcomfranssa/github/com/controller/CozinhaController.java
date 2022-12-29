@@ -25,8 +25,8 @@ public class CozinhaController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<Cozinha>> listar(){
-        return new ResponseEntity<>(cozinhaService.listar(),HttpStatus.OK);
+    public ResponseEntity<List<Cozinha>> listar(@RequestParam(value = "nome", required = false) String nome){
+        return new ResponseEntity<>(cozinhaService.listar(nome),HttpStatus.OK);
     }
 //    @GetMapping()
 //    public CozinhasWrapper listarXml(){

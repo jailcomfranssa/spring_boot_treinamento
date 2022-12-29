@@ -73,6 +73,10 @@ public class RestauranteController {
         return new ResponseEntity<>(restauranteService.consultaPorNome(nome, id),HttpStatus.OK);
 
     }
+    @GetMapping("/consulta/nome/frete")
+    public ResponseEntity<List<Restaurante>> find(String nome, BigDecimal taxaFreteInicial, BigDecimal taxaFreteFinal){
+        return new ResponseEntity<>(restauranteService.find(nome,taxaFreteInicial,taxaFreteFinal),HttpStatus.OK);
+    }
 }
 
 

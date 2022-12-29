@@ -99,4 +99,9 @@ public class RestauranteServiceImpl implements RestauranteService {
     public List<Restaurante> consultaPorNome(String nome, Long id) {
         return repository.consultarPorNome(nome,id);
     }
+
+    @Override
+    public List<Restaurante> find(String nome, BigDecimal taxaFreteInicial, BigDecimal taxaFreteFinal) {
+        return repository.find(nome,taxaFreteInicial,taxaFreteFinal);
+    }
 }

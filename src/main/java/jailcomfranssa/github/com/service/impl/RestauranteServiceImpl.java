@@ -89,4 +89,9 @@ public class RestauranteServiceImpl implements RestauranteService {
     public Integer contCozinha(Long id) {
         return repository.countByCozinhaId(id);
     }
+
+    @Override
+    public List<Restaurante> consultaNome(String nome, Long id) {
+        return repository.consultarNome(nome,id);
+    }
 }

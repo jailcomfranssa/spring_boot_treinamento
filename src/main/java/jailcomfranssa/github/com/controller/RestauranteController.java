@@ -77,6 +77,12 @@ public class RestauranteController {
     public ResponseEntity<List<Restaurante>> find(String nome, BigDecimal taxaFreteInicial, BigDecimal taxaFreteFinal){
         return new ResponseEntity<>(restauranteService.find(nome,taxaFreteInicial,taxaFreteFinal),HttpStatus.OK);
     }
+
+    @GetMapping("/com-frete-gratis")
+    public ResponseEntity<List<Restaurante>> restauranteComFreteGratis(String nome){
+        return new ResponseEntity<>(restauranteService.comFreteGratis(nome),HttpStatus.OK);
+
+    }
 }
 
 

@@ -24,4 +24,5 @@ public interface RestauranteService {
     List<Restaurante> consultaNome(String nome, Long id);
     List<Restaurante> consultaPorNome(String nome, Long id);
     List<Restaurante> find(String nome, BigDecimal taxaFreteInicial, BigDecimal taxaFreteFinal);
+    List<Restaurante> comFreteGratis(String nome);
 }

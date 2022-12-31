@@ -5,6 +5,7 @@ import jailcomfranssa.github.com.model.entity.Restaurante;
 import jailcomfranssa.github.com.repository.RestauranteRepository;
 import jailcomfranssa.github.com.repository.spec.RestauranteComFreteGratisSpec;
 import jailcomfranssa.github.com.repository.spec.RestauranteComNomeSemelhanteSpec;
+import jailcomfranssa.github.com.repository.spec.RestauranteSpecs;
 import jailcomfranssa.github.com.service.CozinhaService;
 import jailcomfranssa.github.com.service.RestauranteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
+
+import static jailcomfranssa.github.com.repository.spec.RestauranteSpecs.comNomeSemelhante;
 
 @Service
 public class RestauranteServiceImpl implements RestauranteService {
@@ -109,8 +112,33 @@ public class RestauranteServiceImpl implements RestauranteService {
 
     @Override
     public List<Restaurante> comFreteGratis(String nome) {
-        var comFreteGratis = new RestauranteComFreteGratisSpec();
-        var comNomeSemelhante = new RestauranteComNomeSemelhanteSpec(nome);
-        return repository.findAll(comFreteGratis.and(comNomeSemelhante));
+//        var comFreteGratis = new RestauranteComFreteGratisSpec();
+//        var comNomeSemelhante = new RestauranteComNomeSemelhanteSpec(nome);
+        return repository.findAll(RestauranteSpecs.comFreteGratis().and(comNomeSemelhante(nome)));
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
